@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Server-Side-Calulator</title>
+    <title>To-Do-List</title>
     <script src="vendor/jquery.js"></script>
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" href="styles/style.css">
@@ -13,8 +13,24 @@
 </head>
 
 <body>
-
-
+<h1>To-Do-List</h1>
+<h2>Create a New Task</h2>
+<input type= "text" id = "task" placeholder="Task">
+<input type="text" id="date" placeholder="Date">
+<button type="button" id="submitBtn">Submit</button>
+<h2>To-Do-List Table</h2>
+<table> 
+    <thread>
+        <tr>
+            <th>Task</th>
+            <th>Date</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thread>
+    <tbody id ="taskList">  
+    </tbody>
+</table>
 
 </body>
 

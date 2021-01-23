@@ -6,7 +6,7 @@ const todo  = require('./routes/todo.js');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(express.static('server/public'))
 app.use('/todo', todo);
 
 // Start listening for requests on a specific port

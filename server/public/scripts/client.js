@@ -10,7 +10,7 @@ function getTask(){
         type:'GET',
         url:'/todo'
     }).then(function(response){
-        console.log(response)
+        console.log(response);
         refreshTasks(response);
     }).catch(function(error){
         console.log('error in GET',error);
@@ -20,11 +20,11 @@ function getTask(){
 function refreshTasks(task) {
     $('#taskList').empty();
     for (let i = 0; i < task.length; i++) {
-        let task = task[i];
+        let tasks = task[i];
         $('#taskList').append(`<tr>
-                    <td>${task.task}</td>
-                    <td>${task.published}</td>
-                    <td>${task.status}</td>
+                    <td>${tasks.task}</td>
+                    <td>${tasks.published}</td>
+                    <td>${tasks.status}</td>
         </tr>`);
     }
 

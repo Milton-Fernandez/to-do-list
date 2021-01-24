@@ -29,10 +29,9 @@ router.post('/',(req,res) => {
 });
 
 router.put('/:id', (req,res) => {
-    let id = req.params.id;
-    const queryText = `UPDATE "to_do" SET "status" = 'Complete';`;
+    const queryText = `UPDATE "to_do" SET "status" = 'Complete' WHERE "id" = $1;`;
     console.log('Updated Task to Complete');
-    pool.query(queryTexts, [id])
+    pool.query(queryText, [req.params.id])
     .then((result) =>{
         res.sendStatus(204);
     })

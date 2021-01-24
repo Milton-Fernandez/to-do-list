@@ -66,6 +66,7 @@ function completeTask(event){
         url:`/todo/${completeid}`,
     
     }).then(function(response){
+        $(this).closest('tr').css('background-color', 'yellow');
         getTask();
 
     })

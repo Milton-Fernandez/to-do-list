@@ -1,10 +1,40 @@
 body{
-    background-image: url(flower_background.jpg); 
-
+  background-image: url(flower_background.jpg); 
   height: 100%;
-
- 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin:0;
+}
+
+
+h1 {
+  margin: 0;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: 400;
+  width: 100%;
+  background-color: maroon;
+  color: beige;
+}
+
+h2{
+  margin-left: 20px;
+}
+th, td { 
+    height: 50px;
+    width:200px; 
+    text-align:center; 
+    border:1px solid black; 
+    padding:5px 
+              
+    } 
+
+table{
+     margin-left: 20px;
+}
+
+#buttons{
+  margin-left: 20px;
 }

@@ -48,6 +48,8 @@ function addTask(){
     }).then(function(response){
         console.log('Response from server',response);
         getTask();
+        $('#task').val('');
+        $('#date').val('');
     }).catch(function(error){
         console.log('Error in POST', error)
         alert('Unable to add task');

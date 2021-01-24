@@ -28,7 +28,7 @@ function refreshTasks(task) {
                     <td>${tasks.task}</td>
                     <td>${tasks.published}</td>
                     <td>${tasks.status}</td>
-                    <td><button data-taskid = ${task.id} class = "delete">Delete</button></td>
+                    <td><button taskid = ${task.id} class = "delete">Delete</button></td>
         </tr>`);
     }
 

@@ -15,13 +15,13 @@ router.get('/',(req,res) => {
 });
 
 router.delete('/:id',(req,res) => {
-    const queryText = `DELETE FROM "to_do" WHERE id = $1;`;
+    const queryText = `DELETE FROM "to_do" WHERE "id" = $1;`;
     pool.query(queryText,[req.params.id]) 
     .then((result) => {
         res.sendStatus(204);
     })
     .catch((err) => {
-        console.log(`Error deleting`,error);
+        console.log(`Error deleting`,err);
         res.sendStatus(500);
     })
 });

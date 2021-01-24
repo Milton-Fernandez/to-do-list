@@ -38,3 +38,8 @@ table{
 #buttons{
   margin-left: 20px;
 }
+
+.red{
+  background-color: maroon;
+  color:white;
+}

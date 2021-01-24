@@ -27,14 +27,22 @@ function refreshTasks(task) {
     $('#taskList').empty();
     for (let i = 0; i < task.length; i++) {
         let tasks = task[i];
-        $('#taskList').append(`<tr>
+      
+        // let isComplete = "";
+        // if(tasks.status == "Complete"){
+        //     isComplete = "red";
+       
+        // }
+
+
+        $('#taskList').append(`<tr class = "${(tasks.status == "Complete") ? "red" : "" }">
                     <td>${tasks.task}</td>
                     <td>${tasks.published}</td>
                     <td>${tasks.status}</td>
-                    <td><button data-completeid = ${tasks.id} class = "complete">Complete</button></td>
+                    <td>${(tasks.status == "Complete") ? "": `<button data-completeid = ${tasks.id} class = "complete" >Complete</button>`}</td>
                     <td><button data-taskid = ${tasks.id} class = "delete">Delete</button></td>
         </tr>`);
-    }
+    }    
 
 }
 
@@ -68,13 +76,9 @@ function completeTask(event){
     
     }).then(function(response){
        
-      
-        getTask();
-       
-
+        getTask(); 
     })
-    $(this).closest('tr').css('background-color', 'maroon');
-    $(this).remove($('#competeid'));
+ 
 }
 
 

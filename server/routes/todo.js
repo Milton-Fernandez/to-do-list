@@ -14,6 +14,21 @@ router.get('/',(req,res) => {
     });
 });
 
+router.post('/',(req,res) => {
+    let newTask = req.body;
+    console.log('Adding Task', newTask);
+    let queryText = `INSERT INTO "to_do"("task", "published") VALUES ($1, $2);`;
+    pool.query(queryText,[newTask.task,newTask.date])
+    .then(result => {
+        res.sendStatus(201);
+    })
+    .catch(error => {
+        console.log(`Error adding new Task`,error);
+        res.sendStatus(500);
+    });
+});
+
+
 router.delete('/:id',(req,res) => {
     const queryText = `DELETE FROM "to_do" WHERE "id" = $1;`;
     pool.query(queryText,[req.params.id]) 

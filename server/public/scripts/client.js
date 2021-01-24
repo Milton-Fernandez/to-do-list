@@ -6,6 +6,7 @@ $(document).ready(function () {
 
 function clickHandlers(){
     $('table').on('click','.delete',deleteTask);
+    $('#submit').on('click', addTask);
 }
 
 function getTask(){
@@ -20,6 +21,7 @@ function getTask(){
     });
 }
 
+
 function refreshTasks(task) {
     $('#taskList').empty();
     for (let i = 0; i < task.length; i++) {
@@ -32,6 +34,24 @@ function refreshTasks(task) {
         </tr>`);
     }
 
+}
+
+function addTask(){
+    console.log('Submit button clicked');
+    let taskData = {};
+    taskData.task = $('#task').val();
+    taskData.date = $('#date').val();
+    $.ajax({
+        type:'POST',
+        url:'/todo',
+        data:taskData
+    }).then(function(response){
+        console.log('Response from server',response);
+        getTask();
+    }).catch(function(error){
+        console.log('Error in POST', error)
+        alert('Unable to add task');
+    });
 }
 
 function deleteTask(event){

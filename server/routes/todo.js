@@ -28,6 +28,19 @@ router.post('/',(req,res) => {
     });
 });
 
+router.put('/:id', (req,res) => {
+    let id = req.params.id;
+    const queryText = `UPDATE "to_do" SET "status" = 'Complete';`;
+    console.log('Updated Task to Complete');
+    pool.query(queryTexts, [id])
+    .then((result) =>{
+        res.sendStatus(204);
+    })
+    .catch((err) => {
+        console.log(`Error Updating Task`);
+        res.sendStatus(500);
+    })
+})
 
 router.delete('/:id',(req,res) => {
     const queryText = `DELETE FROM "to_do" WHERE "id" = $1;`;

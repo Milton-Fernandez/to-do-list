@@ -6,6 +6,7 @@ $(document).ready(function () {
 
 function clickHandlers(){
     $('table').on('click','.delete',deleteTask);
+    $('table').on('click', '.complete', completeTask);
     $('#submit').on('click', addTask);
 }
 
@@ -30,6 +31,7 @@ function refreshTasks(task) {
                     <td>${tasks.task}</td>
                     <td>${tasks.published}</td>
                     <td>${tasks.status}</td>
+                    <td><button data-completeid = ${tasks.id} class = "complete">Complete</button></td>
                     <td><button data-taskid = ${tasks.id} class = "delete">Delete</button></td>
         </tr>`);
     }
@@ -55,6 +57,20 @@ function addTask(){
         alert('Unable to add task');
     });
 }
+
+function completeTask(event){
+    const completeid = $(event.target).data('completeid');
+    console.log(`Completed Task`);
+    $.ajax({
+        method:"PUT",
+        url:`/todo/${completeid}`,
+    
+    }).then(function(response){
+        getTask();
+
+    })
+}
+
 
 function deleteTask(event){
     const taskid = $(event.target).data('taskid');

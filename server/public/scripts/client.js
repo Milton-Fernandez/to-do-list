@@ -61,15 +61,20 @@ function addTask(){
 function completeTask(event){
     const completeid = $(event.target).data('completeid');
     console.log(`Completed Task`);
+
     $.ajax({
         method:"PUT",
         url:`/todo/${completeid}`,
     
     }).then(function(response){
-        $(this).closest('tr').css('background-color', 'yellow');
+       
+      
         getTask();
+       
 
     })
+    $(this).closest('tr').css('background-color', 'maroon');
+    $(this).remove($('#competeid'));
 }
 
 

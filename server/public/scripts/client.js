@@ -1,9 +1,12 @@
 $(document).ready(function () {
     console.log('jQuery sourced.');
     getTask();
+    clickHandlers();
 });
 
-
+function clickHandlers(){
+    $('table').on('click','.delete',deleteTask);
+}
 
 function getTask(){
     $.ajax({
@@ -25,7 +28,20 @@ function refreshTasks(task) {
                     <td>${tasks.task}</td>
                     <td>${tasks.published}</td>
                     <td>${tasks.status}</td>
+                    <td><button data-taskid = ${task.id} class = "delete">Delete</button></td>
         </tr>`);
     }
+
+}
+
+function deleteTask(event){
+    const taskid = $(event.target).data('taskid');
+    console.log(`Deleting task`);
+    $.ajax({
+        method:"DELETE",
+        url: `/todo/${taskid}`
+    }).then(function(response){
+        getTask();
+    })
 
 }

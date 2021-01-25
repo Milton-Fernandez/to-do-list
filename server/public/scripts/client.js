@@ -3,13 +3,14 @@ $(document).ready(function () {
     getTask();
     clickHandlers();
 });
-
+//function to handle the butons
 function clickHandlers(){
     $('table').on('click','.delete',deleteTask);
     $('table').on('click', '.complete', completeTask);
     $('#submit').on('click', addTask);
-}
+}//end clickHandlers
 
+//function used to get data from server
 function getTask(){
     $.ajax({
         type:'GET',
@@ -20,19 +21,13 @@ function getTask(){
     }).catch(function(error){
         console.log('error in GET',error);
     });
-}
+}//end getTask
 
-
+//function used to create a table based from the data from the server and append it to the DOM
 function refreshTasks(task) {
     $('#taskList').empty();
     for (let i = 0; i < task.length; i++) {
         let tasks = task[i];
-      
-        // let isComplete = "";
-        // if(tasks.status == "Complete"){
-        //     isComplete = "red";
-       
-        // }
 
 
         $('#taskList').append(`<tr class = "${(tasks.status == "Complete") ? "red" : "" }">
@@ -46,6 +41,7 @@ function refreshTasks(task) {
 
 }
 
+//function used to add a new task and send it to the server
 function addTask(){
     console.log('Submit button clicked');
     let taskData = {};
@@ -64,8 +60,9 @@ function addTask(){
         console.log('Error in POST', error)
         alert('Unable to add task');
     });
-}
+}//end addTask
 
+//function used to indicate that a task is completed
 function completeTask(event){
     const completeid = $(event.target).data('completeid');
     console.log(`Completed Task`);
@@ -79,9 +76,9 @@ function completeTask(event){
         getTask(); 
     })
  
-}
+}//end completeTask
 
-
+//function used to delete a task 
 function deleteTask(event){
     const taskid = $(event.target).data('taskid');
     console.log(`Deleting task`);
@@ -92,4 +89,4 @@ function deleteTask(event){
         getTask();
     })
 
-}
+}//deleteTask

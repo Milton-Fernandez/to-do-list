@@ -1,16 +1,21 @@
 
 // Require postgres driver
 const pg = require('pg');
-
-const pool = new pg.Pool({
-    database: 'to_do_list', // CHANGE THIS to match YOUR database name,
-    host: 'localhost',
-    user: '', // username for postgres (check postico)
-    password: '', // password for postgres (mac users dont need this) 
-    port: 5432, // 5432 is the default postgres port
-    max: 10, // How many reserved databse connections to cap at
-    idleTimeoutMillis: 30000, // How long to wait for a query to finish
-});
+const url = require('url');
+let config = {};
+if(process.env.DATABASE_URL){
+    config = {
+        connectionString: process.env.DATABASE_URL,
+        ssl:{rejectUnauthorized: false},
+    };
+}else{
+    config = {
+        host: 'localhost',
+        port: 5432,
+        database: 'to_do_list', // CHANGE THIS LINE to match your local database name!
+    };
+}
+const pool = new pg.Pool(config);
 
 // purely to check that our pool is working appropriately! just
 // for debugging purposes. NOT required.
